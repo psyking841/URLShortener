@@ -7,7 +7,7 @@ import org.slf4j.{Logger, LoggerFactory}
 class DBHelper{
   val logger: Logger = LoggerFactory.getLogger(getClass)
 
-  private val con_str = "jdbc:postgresql://192.168.1.210:5432/shorternurldb?user=span&password=msu1234"
+  private val con_str = "jdbc:postgresql://192.168.1.210:5432/shorternurldb?user=span&password=1234"
   private val conn = DriverManager.getConnection(con_str)
   val stm: Statement = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY)
 

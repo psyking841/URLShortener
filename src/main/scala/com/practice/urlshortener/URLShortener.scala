@@ -4,7 +4,7 @@ import com.practice.dbhelper.DBHelper
 import org.slf4j.{Logger, LoggerFactory}
 
 object URLShortener extends App{
-
+  val HEADER = "www.shorten.com"
   val logger: Logger = LoggerFactory.getLogger(getClass)
   if(args.length < 2){
     logger.error("Usage: URLShortener.jar -s www.google.com or URLShortener.jar -l A1B2c3")
@@ -20,7 +20,7 @@ object URLShortener extends App{
     val shortUrl = dbHelper.getShortUrlFromLongUrl(args(1))
     if(shortUrl != ""){
       logger.info("Found the corresponding short url: " + shortUrl)
-      print(shortUrl)
+      print(HEADER + "/" + shortUrl)
     }else{
       logger.info("Given long url not found in the db, so update it...")
       if(dbHelper.updateLongUrls(args(1)) != 1){
@@ -53,8 +53,6 @@ object URLShortener extends App{
 class URLShortener {
   val STR = "abcedfghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"
   val SCALE: Int = 61
-
-  val HEADER = "www.shorten.com"
 
   def extractShortURL(fullURL: String): String = {
     val pattern = """(?<=\/)[a-zA-Z1-9]*\b""".r //match everything in the first segment

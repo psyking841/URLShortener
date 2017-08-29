@@ -4,7 +4,7 @@ import com.practice.dbhelper.DBHelper
 import org.slf4j.{Logger, LoggerFactory}
 
 object URLShortener extends App{
-  val HEADER = "www.shorten.com"
+  val HEADER = "www.shorten.com/shorturls"
   val logger: Logger = LoggerFactory.getLogger(getClass)
   if(args.length < 2){
     logger.error("Usage: URLShortener.jar -s www.google.com or URLShortener.jar -l A1B2c3")
@@ -59,8 +59,8 @@ class URLShortener {
     pattern.findFirstIn(fullURL).getOrElse("")
   }
 
-  def constructURL(shortURL: String): String = {
-    HEADER + "/" + shortURL
+  def constructURL(header: String, shortURL: String): String = {
+    header + "/" + shortURL
   }
 
   def idToShortURL(id: Long): String = {
